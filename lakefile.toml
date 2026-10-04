@@ -1,0 +1,23 @@
+name = "olympiad-lean4"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["Olympiad"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+# This repository does not require Mathlib's copyright/license header format.
+weak.linter.style.header = false
+maxSynthPendingDepth = 3
+warningAsError = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.34.1"
+
+[[lean_lib]]
+name = "Olympiad"
+# Build the root and its imports; unimported problem drafts stay outside the build.
+globs = ["Olympiad"]
