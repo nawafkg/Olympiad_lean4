@@ -1,0 +1,15 @@
+{
+  "git.autoRepositoryDetection": false,
+  "git.repositoryScanIgnoredFolders": [".lake"],
+  "git.ignoredRepositories": [
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/mathlib",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/batteries",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/aesop",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/Qq",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/proofwidgets",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/importGraph",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/LeanSearchClient",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/plausible",
+    "/Users/macno/Desktop/Olympiad_lean4/.lake/packages/Cli"
+  ]
+}
