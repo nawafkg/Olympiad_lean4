@@ -9,6 +9,8 @@ relaxedAutoImplicit = false
 weak.linter.mathlibStandardSet = true
 # This repository does not require Mathlib's copyright/license header format.
 weak.linter.style.header = false
+weak.linter.style.emptyLine = false
+weak.linter.style.whitespace = false
 maxSynthPendingDepth = 3
 warningAsError = true
 
