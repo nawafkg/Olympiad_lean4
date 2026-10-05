@@ -10,7 +10,7 @@ Problem: 1
 
 namespace Olympiad.Problems.«JBMO».«Y1999».«P1»
 
-theorem problem_1
+theorem problem
 (a b c x y : ℝ)
 (ha : a^3 + a*x + y = 0)
 (hb : b^3 + b*x + y = 0)
