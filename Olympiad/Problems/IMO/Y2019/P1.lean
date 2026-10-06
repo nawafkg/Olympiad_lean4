@@ -29,11 +29,15 @@ theorem problem (f : ℤ → ℤ) :
 
     --subtituting (0, a)
     have hffa : ∀ a : ℤ, 2 * f a + f 0 = f (f a) := by
-      sorry
+      intro a
+      have h := hFE 0 a
+      simpa [add_comm] using h
 
     --subtituting (0, a + b)
     have hffab : ∀ a b : ℤ, 2 * f (a + b) + f 0 = f (f (a + b)) := by
-      sorry
+      intro a b
+      have h := hFE 0 (a+b)
+      simpa [add_comm] using h
 
     --after rewriting the original equation, we subtitute (a, a)
     have hdouble : ∀ a : ℤ, 2 * f a = f (2 * a) + f 0 := by
