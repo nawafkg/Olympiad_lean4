@@ -25,34 +25,28 @@ theorem problem (f : ℤ → ℤ) :
   constructor
 
   --proving the only two valid forms are f(x) = 0 and f(x) = 2x + c
-  · intro hFE
+  · intro hf
 
-    --subtituting (0, a)
-    have hffa : ∀ a : ℤ, 2 * f a + f 0 = f (f a) := by
-      intro a
-      have h := hFE 0 a
-      simpa [add_comm] using h
-
-    --subtituting (0, a + b)
-    have hffab : ∀ a b : ℤ, 2 * f (a + b) + f 0 = f (f (a + b)) := by
-      intro a b
-      have h := hFE 0 (a+b)
-      simpa [add_comm] using h
-
-    --after rewriting the original equation, we subtitute (a, a)
-    have hdouble : ∀ a : ℤ, 2 * f a = f (2 * a) + f 0 := by
-      sorry
-
-    --using the previous result, we arrive here
+    --by some subtitution magic, we arrive here
     have hadd : ∀ a b : ℤ, f a + f b = f (a + b) + f 0 := by
-      sorry
+      intro a b
+      have hab := hf a b
+      have h0a := hf 0 a
+      have ha0 := hf a 0
+      have h0ab := hf 0 (a+b)
+      simp at h0a ha0 h0ab
+      linarith
 
     let c := f 0
     let g : ℤ → ℤ := fun x => f x - c
 
     --g is additive
     have hg_add : ∀ a b : ℤ, g (a + b) = g a + g b := by
-      sorry
+      intro a b
+      dsimp [g]
+      dsimp [c]
+      have h := hadd a b
+      linarith
 
     let k := g 1
 
