@@ -9,6 +9,7 @@ import Mathlib.Data.Nat.ModEq
 import Mathlib.FieldTheory.Finite.Basic
 import Mathlib.Tactic.NormNum
 import Mathlib.Data.Int.Basic
+import Olympiad.Utils.Algebra
 
 
 /-!
@@ -48,15 +49,16 @@ theorem problem (f : ℤ → ℤ) :
       have h := hadd a b
       linarith
 
-    let k := g 1
 
     --here we prove g is k*x
-    have hg_linear : ∀ x : ℤ, g x = k * x := by
-      sorry
+    obtain ⟨k, hg_linear⟩ := Olympiad.Utils.Algebra.additive_int_linear g hg_add
 
     --we use g to prove f is linear
     have hf_linear : ∀ x : ℤ, f x = k * x + c := by
-      sorry
+      dsimp [g] at hg_linear
+      intro x
+      have h := hg_linear x
+      linarith
 
     --two cases, either f is 0, or not
     by_cases hzero : ∀ x : ℤ, f x = 0
@@ -65,7 +67,20 @@ theorem problem (f : ℤ → ℤ) :
     -- when f is not 0, we find k by subtituting back into the original equation
     · right
       have hk : k = 2 := by
-        sorry
+        have h00 := hf 0 0
+        have h10 := hf 1 0
+        simp only [hf_linear] at h00 h10
+        have hkprod : k * (k - 2) = 0 := by
+          nlinarith [h00, h10]
+        rcases mul_eq_zero.mp hkprod with hk0 | hk2
+        · have hc0 : c = 0 := by
+            rw [hk0] at h00
+            linarith
+          exfalso
+          apply hzero
+          intro x
+          simp [hf_linear, hk0, hc0]
+        · linarith
       use c
       intro x
       rw [hf_linear x, hk]
